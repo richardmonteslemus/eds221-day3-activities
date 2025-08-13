@@ -1,0 +1,76 @@
+---
+title: "Conditional Loops"
+author: "Richard Montes Lemus"
+format: html
+---
+```{r}
+pm2_5 <- 200
+```
+
+```{r}
+# Task 1: conditional statements for health risk based on air quality
+
+if (pm2_5 < 100){
+  print("Low to moderate risk")
+} else if( pm2_5 >= 100 & pm2_5 < 150) {
+  print("Unhealthy for sensitive groups")
+} else 
+  print("Health risk is present")
+  
+```
+
+```{r}
+# Task 2: 
+
+species <- "blue whale"
+
+if (species == "blue whale") {
+  stringr::str_detect(species, "blue whale")
+  print("You found a whale!")
+}
+
+```
+
+```{r}
+base_burrito <- 6.50
+
+main_ingredient <- "chicken"
+
+if (main_ingredient == "veggie") {
+  print(paste("This burrito costs", base_burrito))
+} else if (main_ingredient == "chicken") {
+print(paste("this burrito costs", base_burrito + 3))
+} else if (main_ingredient == "steak") {
+print(paste("this burrito costs", base_burrito + 3.25))
+}
+```
+
+```{r}
+# Task 4: Fish for loop
+
+fish <- c(8, 10, 12, 23)
+
+for (i in seq_along(fish)) {
+fish_percentage <- fish[i]/sum(fish)
+if (i == 1){
+  print(paste("Goldfish is", round(fish_percentage,3), "percent"))
+} else if (i == 2) {
+  print(paste("Tetras is", round(fish_percentage, 3)))
+} else if (i == 3) {
+  print(paste("Guppies is", round(fish_percentage, 4)))
+} else if (i == 4) {
+  print(paste("Mollies is", round(fish_percentage, 3)))
+}
+}
+  
+
+```
+```{r}
+# Task 5
+for (i in seq_along(month.name)){
+  print(paste(month.name[i], "is month", i))
+}
+
+```
+
+
