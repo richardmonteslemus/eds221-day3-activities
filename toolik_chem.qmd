@@ -1,0 +1,44 @@
+---
+title: "Toolik Chemistry"
+author: "Richard Montes Lemus"
+format: html
+---
+```{r}
+library(tidyverse)
+library(here)
+library(janitor)
+```
+```{r}
+toolik_biochem <- read_csv(here::here("data", "2011_Kling_Akchem.csv"), na = c(".", NA)) %>% 
+  clean_names()
+```
+```{r}
+inet_biochem <- toolik_biochem %>% 
+  subset(site == "Toolik Inlet") %>% 
+  select(p_h, doc_u_m, tdn_u_m)
+```
+
+```{r}
+# Summarize function and across for finding means for each column 
+
+inet_biochem %>% 
+  #group_by(p_h, doc_u_m, tdn_u_m) %>% 
+  summarise(across(c("p_h", "doc_u_m", "tdn_u_m"), ~ mean(.x, na.rm = TRUE)))
+```
+```{r}
+# Apply function for finding means per column 
+apply(inet_biochem, 2, mean, na.rm = TRUE)
+
+```
+```{r}
+# For loop for finding means per column 
+mean_value_vector <- vector(mode = "numeric", length = ncol(inet_biochem))
+
+for(i in 1:ncol(inet_biochem)) {
+  mean_value <- mean(inet_biochem[[i]], na.rm = TRUE)
+  mean_value_vector[i] <- mean_value
+}
+mean_value_vector
+```
+
+
